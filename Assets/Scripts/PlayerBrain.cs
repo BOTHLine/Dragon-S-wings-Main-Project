@@ -6,25 +6,24 @@ public class PlayerBrain : MonoBehaviour
     // Components
 
     // Variables
-    public Vector2Reference PlayerPosition;
-
-    public Vector2Reference MoveDirection;
-
-    public Vector2Reference AimTarget;
+    [SerializeField] private Vector2Reference _PlayerPosition;
+    [SerializeField] private Vector2Reference _MoveDirection;
+    [SerializeField] private Vector2Reference _AimPosition;
 
     // Events
-    public GameEvent OnDashInput;
+    [SerializeField] private GameEvent _OnDashInput;
+    [SerializeField] private GameEvent _OnHookInput;
 
     // Coroutines
 
     // Methods
     private void Update()
     {
-        PlayerPosition.Variable.Value = transform.position;
+        _PlayerPosition.Variable.Value = transform.position;
+        _MoveDirection.Variable.Value = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        _AimPosition.Variable.Value = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        MoveDirection.Variable.Value = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-        AimTarget.Variable.Value = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.Space)) OnDashInput.Raise();
+        if (Input.GetKeyDown(KeyCode.Space)) _OnDashInput.Raise();
+        if (Input.GetKeyDown(KeyCode.Mouse0)) _OnHookInput.Raise();
     }
 }

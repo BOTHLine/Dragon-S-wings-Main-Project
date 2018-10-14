@@ -2,7 +2,12 @@
 
 [System.Serializable]
 public class Vector2Reference : BaseReference<Vector2Variable, Vector2>
-{ }
+{
+    public static Vector2 operator +(Vector2Reference left, Vector2Reference right) { return left.Value + right.Value; }
+    public static Vector2 operator -(Vector2Reference left, Vector2Reference right) { return left.Value - right.Value; }
+    public static Vector2 operator *(Vector2Reference left, Vector2Reference right) { return left.Value * right.Value; }
+    public static Vector2 operator /(Vector2Reference left, Vector2Reference right) { return left.Value / right.Value; }
+}
 
 [UnityEditor.CustomPropertyDrawer(typeof(Vector2Reference))]
 public class Vector2ReferenceDrawer : UnityEditor.PropertyDrawer

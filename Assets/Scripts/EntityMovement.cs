@@ -6,10 +6,10 @@ public class EntityMovement : MonoBehaviour
     private Rigidbody2D Rigidbody2D;
 
     // Variables
-    public BoolReference CanMove;
-    public FloatReference Speed;
+    [SerializeField] private FloatReference _MoveSpeed;
 
-    public Vector2Reference direction;
+    [SerializeField] private BoolReference _CanMove;
+    [SerializeField] private Vector2Reference _MoveDirection;
 
     // Events
     // Coroutines
@@ -19,5 +19,5 @@ public class EntityMovement : MonoBehaviour
 
     private void FixedUpdate() { Move(); }
 
-    public void Move() { if (CanMove) Rigidbody2D.velocity = direction.Value * Speed; }
+    public void Move() { if (_CanMove) Rigidbody2D.velocity = _MoveDirection.Value * _MoveSpeed; }
 }

@@ -6,15 +6,14 @@ public class EntityDash : MonoBehaviour
     private Rigidbody2D Rigidbody2D;
 
     // Variables
-    public Vector2Reference PlayerPosition;
+    [SerializeField] private FloatReference _DashSpeed;
 
-    public Vector2Reference Target;
+    [SerializeField] private BoolReference _CanDash;
 
-    public BoolReference CanDash;
+    [SerializeField] private Vector2Reference _StartPosition;
+    [SerializeField] private Vector2Reference _TargetPosition;
 
-    public FloatReference Speed;
-
-    public bool EndDash { get; set; } = false;
+    [SerializeField] private bool EndDash { get; set; } = false;
 
     // Events
     public GameEvent OnDashStart;
@@ -28,7 +27,7 @@ public class EntityDash : MonoBehaviour
 
     public void TryDash()
     {
-        if (CanDash)
+        if (_CanDash)
         {
             _DashRoutine = DashRoutine();
             StartCoroutine(_DashRoutine);
@@ -37,23 +36,23 @@ public class EntityDash : MonoBehaviour
 
     private System.Collections.IEnumerator DashRoutine()
     {
-        CanDash.Variable.Value = false;
+        _CanDash.Variable.Value = false;
 
-        Vector2 start = PlayerPosition;
-        Vector2 destination = Target;
+        Vector2 start = _StartPosition;
+        Vector2 destination = _TargetPosition;
         Vector2 direction = (destination - start).normalized;
 
-        
+
 
         OnDashStart.Raise();
 
         do
         {
-            Rigidbody2D.velocity = direction * Speed;
+            Rigidbody2D.velocity = direction * _DashSpeed;
             yield return new WaitForFixedUpdate();
-        } while ((destination - start).sqrMagnitude > (PlayerPosition - start).sqrMagnitude);
+        } while ((destination - start).sqrMagnitude > (_StartPosition - start).sqrMagnitude);
 
         OnDashEnd.Raise();
-        CanDash.Variable.Value = true;
+        _CanDash.Variable.Value = true;
     }
 }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class BaseReference<TVariable, TDatatype> where TVariable : BaseVariable<TDatatype>
+public class BaseReference<TVariable, TDatatype>
+    where TVariable : BaseVariable<TDatatype>
 {
     public bool UseConstant = false;
     public TDatatype ConstantValue;
