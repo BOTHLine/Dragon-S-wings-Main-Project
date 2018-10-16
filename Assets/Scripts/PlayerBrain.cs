@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(StatemachineManager))]
 public class PlayerBrain : MonoBehaviour
 {
     // Components

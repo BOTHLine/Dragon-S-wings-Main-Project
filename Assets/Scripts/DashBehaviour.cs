@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
 
-public class EntityDash : MonoBehaviour
+public class DashBehaviour : StatemachineBehaviour
 {
     // Components
-    private Rigidbody2D Rigidbody2D;
+    private Rigidbody2D _Rigidbody2D;
+    private StatemachineManager _StatemachineManager;
 
     // Variables
     [SerializeField] private FloatReference _DashSpeed;
 
-    [SerializeField] private BoolReference _CanDash;
-
     [SerializeField] private Vector2Reference _StartPosition;
     [SerializeField] private Vector2Reference _TargetPosition;
 
-    [SerializeField] private bool EndDash { get; set; } = false;
+    [SerializeField] private StatemachineState _TargetStateWhenFinished;
 
     // Events
     public GameEvent OnDashStart;
@@ -23,36 +22,38 @@ public class EntityDash : MonoBehaviour
     private System.Collections.IEnumerator _DashRoutine;
 
     // Methods
-    private void Awake() { Rigidbody2D = GetComponentInParent<Rigidbody2D>(); }
-
-    public void TryDash()
+    private void Awake()
     {
-        if (_CanDash)
-        {
-            _DashRoutine = DashRoutine();
-            StartCoroutine(_DashRoutine);
-        }
+        _Rigidbody2D = GetComponentInParent<Rigidbody2D>();
+        _StatemachineManager = GetComponentInParent<StatemachineManager>();
     }
 
     private System.Collections.IEnumerator DashRoutine()
     {
-        _CanDash.Variable.Value = false;
-
         Vector2 start = _StartPosition;
         Vector2 destination = _TargetPosition;
         Vector2 direction = (destination - start).normalized;
-
 
 
         OnDashStart.Raise();
 
         do
         {
-            Rigidbody2D.velocity = direction * _DashSpeed;
+            _Rigidbody2D.velocity = direction * _DashSpeed;
             yield return new WaitForFixedUpdate();
         } while ((destination - start).sqrMagnitude > (_StartPosition - start).sqrMagnitude);
 
         OnDashEnd.Raise();
-        _CanDash.Variable.Value = true;
+        _StatemachineManager.ChangeState(_TargetStateWhenFinished);
     }
+
+    public override void StartBehaviour()
+    {
+        _DashRoutine = DashRoutine();
+        StartCoroutine(_DashRoutine);
+    }
+
+    public override void Behave() { /* Empty  */}
+
+    public override void EndBehaviour() {   /* Empty */ }
 }

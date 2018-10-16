@@ -7,6 +7,11 @@ public class FloatReference : BaseReference<FloatVariable, float>
     public static float operator -(FloatReference left, FloatReference right) { return left.Value - right.Value; }
     public static float operator *(FloatReference left, FloatReference right) { return left.Value * right.Value; }
     public static float operator /(FloatReference left, FloatReference right) { return left.Value / right.Value; }
+
+    public static bool operator <(FloatReference left, FloatReference right) { return left.Value < right.Value; }
+    public static bool operator >(FloatReference left, FloatReference right) { return left.Value > right.Value; }
+    public static bool operator <=(FloatReference left, FloatReference right) { return left.Value <= right.Value; }
+    public static bool operator >=(FloatReference left, FloatReference right) { return left.Value >= right.Value; }
 }
 
 [UnityEditor.CustomPropertyDrawer(typeof(FloatReference))]

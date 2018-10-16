@@ -2,7 +2,12 @@
 
 [System.Serializable]
 public class BoolReference : BaseReference<BoolVariable, bool>
-{ }
+{
+    public static bool operator <(BoolReference left, BoolReference right) { return !left && right; }
+    public static bool operator >(BoolReference left, BoolReference right) { return left && !right; }
+    public static bool operator <=(BoolReference left, BoolReference right) { return (left == right) || (left < right); }
+    public static bool operator >=(BoolReference left, BoolReference right) { return (left == right) || (left > right); }
+}
 
 [UnityEditor.CustomPropertyDrawer(typeof(BoolReference))]
 public class BoolReferenceDrawer : UnityEditor.PropertyDrawer

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab99abc1e9e76b94c9730a6de1cd0f30, type: 3}
+  m_Name: New State Machine
+  m_EditorClassIdentifier: 
+  _States:
+  - {fileID: 11400000, guid: 23798906416f25e45ba57a2953d62e2b, type: 2}
+  - {fileID: 11400000, guid: 8597c260dc5604a4c8c6696acef2906f, type: 2}
