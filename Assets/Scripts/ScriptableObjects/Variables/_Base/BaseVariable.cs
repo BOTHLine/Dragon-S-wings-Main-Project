@@ -3,7 +3,7 @@
 public abstract class BaseVariable<TDatatype> : ScriptableObject, ISerializationCallbackReceiver
 {
     public TDatatype InitialValue;
-    protected TDatatype _Value;
+    [SerializeField] protected TDatatype _Value;
     public TDatatype Value
     {
         get

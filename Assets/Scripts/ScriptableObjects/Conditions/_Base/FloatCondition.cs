@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Conditions/Float Condition", fileName = "New Float Condition")]
+[System.Serializable]
 public class FloatCondition : BaseCondition
 {
     public FloatReference _Value;
@@ -25,4 +25,12 @@ public class FloatCondition : BaseCondition
             }
         }
     }
+
+    public override void Initialize()
+    {
+        _Value.Variable.OnValueChange += CheckCondition;
+        _ComparisonValue.Variable.OnValueChange += CheckCondition;
+    }
+
+    public void CheckCondition(float newValue) { if (_WasTrue && IsTrue) { OnConditionMet.Raise(); } }
 }

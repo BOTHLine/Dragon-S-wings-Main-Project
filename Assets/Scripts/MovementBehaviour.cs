@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MovementBehaviour : StatemachineBehaviour
+public class MovementBehaviour : MonoBehaviour
 {
     // Components
     private Rigidbody2D Rigidbody2D;
@@ -14,16 +14,7 @@ public class MovementBehaviour : StatemachineBehaviour
     // Coroutines
 
     //Methods
-    private void Awake()
-    {
-        Rigidbody2D = GetComponentInParent<Rigidbody2D>();
-    }
+    private void Awake() { Rigidbody2D = GetComponentInParent<Rigidbody2D>(); }
 
     public void Move() { Rigidbody2D.velocity = _MoveDirection.Value * _MoveSpeed; }
-
-    public override void StartBehaviour() { }
-
-    public override void Behave() { Move(); }
-
-    public override void EndBehaviour() { }
 }
