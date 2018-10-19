@@ -8,9 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec11a56662ba4654882a858fa7ec064c, type: 3}
+  m_Script: {fileID: 11500000, guid: 64034bab353dfae4788f3bbf24a18a4e, type: 3}
   m_Name: FallState
   m_EditorClassIdentifier: 
-  OnStateEnter: {fileID: 0}
-  OnStateExit: {fileID: 0}
-  gameEvent: {fileID: 0}
+  BlockingActions: []

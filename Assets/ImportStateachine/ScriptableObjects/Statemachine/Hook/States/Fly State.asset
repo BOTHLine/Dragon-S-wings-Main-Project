@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139792e56524fcd4ea46fd599b89dd63, type: 3}
+  m_Name: Fly State
+  m_EditorClassIdentifier: 
+  layer: 0
+  actions:
+  - {fileID: 0}
+  transitions:
+  - decision: {fileID: 0}
+    trueState: {fileID: 11400000, guid: b50ae2a4476789b4eac840e3923f2380, type: 2}
+    falseState: {fileID: 11400000, guid: 4f1247f8201d72744ab9a02b8dd22177, type: 2}
+  - decision: {fileID: 0}
+    trueState: {fileID: 0}
+    falseState: {fileID: 0}

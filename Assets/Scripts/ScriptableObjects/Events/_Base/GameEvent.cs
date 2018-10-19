@@ -19,14 +19,12 @@ public class GameEvent : ScriptableObject
     public void UnregisterListener(GameEventListener listener)
     { if (Listeners.Contains(listener)) Listeners.Remove(listener); }
 
-
     public void OnAfterDeserialize() { }
-
     public void OnBeforeSerialize() { }
 }
 
 [UnityEditor.CustomEditor(typeof(GameEvent))]
-public class EventEditor : UnityEditor.Editor
+public class GameEventEditor : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {

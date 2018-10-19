@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Conditions/Bool Condition", fileName = "New Bool Condition")]
+[System.Serializable]
 public class BoolCondition : BaseCondition
 {
     public BoolReference _Value;
@@ -25,4 +25,12 @@ public class BoolCondition : BaseCondition
             }
         }
     }
+
+    public override void Initialize()
+    {
+        _Value.Variable.OnValueChange += CheckCondition;
+        _ComparisonValue.Variable.OnValueChange += CheckCondition;
+    }
+
+    public void CheckCondition(bool newValue) { if (_WasTrue && IsTrue) { OnConditionMet.Raise(); } }
 }

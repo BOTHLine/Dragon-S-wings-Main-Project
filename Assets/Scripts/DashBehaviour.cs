@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 
-public class DashBehaviour : StatemachineBehaviour
+public class DashBehaviour : MonoBehaviour
 {
     // Components
     private Rigidbody2D _Rigidbody2D;
-    private StatemachineManager _StatemachineManager;
 
     // Variables
     [SerializeField] private FloatReference _DashSpeed;
+    [SerializeField] private FloatReference _DashRange;
 
-    [SerializeField] private Vector2Reference _StartPosition;
+    [SerializeField] private Vector2Reference _Position;
     [SerializeField] private Vector2Reference _TargetPosition;
 
-    [SerializeField] private StatemachineState _TargetStateWhenFinished;
+    [SerializeField] private BoolReference _CanDash;
+    [SerializeField] private BoolReference _IsDashing;
 
     // Events
     public GameEvent OnDashStart;
@@ -25,15 +26,21 @@ public class DashBehaviour : StatemachineBehaviour
     private void Awake()
     {
         _Rigidbody2D = GetComponentInParent<Rigidbody2D>();
-        _StatemachineManager = GetComponentInParent<StatemachineManager>();
+    }
+
+    public void Dash()
+    {
+        _DashRoutine = DashRoutine();
+        StartCoroutine(_DashRoutine);
     }
 
     private System.Collections.IEnumerator DashRoutine()
     {
-        Vector2 start = _StartPosition;
-        Vector2 destination = _TargetPosition;
-        Vector2 direction = (destination - start).normalized;
-
+        _IsDashing.Variable.Value = true;
+        _CanDash.Variable.Value = false;
+        Vector2 start = _Position;
+        Vector2 direction = (_TargetPosition - _Position).normalized;
+        Vector2 destination = _Position + direction * _DashRange;
 
         OnDashStart.Raise();
 
@@ -41,19 +48,10 @@ public class DashBehaviour : StatemachineBehaviour
         {
             _Rigidbody2D.velocity = direction * _DashSpeed;
             yield return new WaitForFixedUpdate();
-        } while ((destination - start).sqrMagnitude > (_StartPosition - start).sqrMagnitude);
+        } while ((destination - start).sqrMagnitude >= (_Position - start).sqrMagnitude);
+        _Rigidbody2D.velocity = Vector2.zero;
 
+        _IsDashing.Variable.Value = false;
         OnDashEnd.Raise();
-        _StatemachineManager.ChangeState(_TargetStateWhenFinished);
     }
-
-    public override void StartBehaviour()
-    {
-        _DashRoutine = DashRoutine();
-        StartCoroutine(_DashRoutine);
-    }
-
-    public override void Behave() { /* Empty  */}
-
-    public override void EndBehaviour() {   /* Empty */ }
 }
