@@ -157,10 +157,6 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: ae359fc2da7f4f042982be020f29b3b2, type: 2}
-  _CanMove:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 54588b09d7820a14d894a938e532ea0f, type: 2}
   _MoveDirection:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
@@ -315,10 +311,6 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 62671f84c9303aa43b438b73b160fbb9, type: 2}
-  _CanDash:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 76d2e44b8eae6fd4586956b591eede7a, type: 2}
   _StartPosition:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
@@ -327,6 +319,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 11400000, guid: adb970d97005a044cbc1bd582f043431, type: 2}
+  _TargetStateWhenFinished: {fileID: 0}
   OnDashStart: {fileID: 11400000, guid: 5c4b64d3511ff6742a7fba2fee425c61, type: 2}
   OnDashEnd: {fileID: 11400000, guid: e20a607ab9958ed439b8ac8ca952276f, type: 2}
 --- !u!1 &1999464440
@@ -340,6 +333,7 @@ GameObject:
   - component: {fileID: 1999464443}
   - component: {fileID: 1999464442}
   - component: {fileID: 1999464441}
+  - component: {fileID: 1999464445}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -358,8 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6f30304d2a0b748a94a5ddc171831d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _CurrentState: {fileID: 0}
-  _StateMachine: {fileID: 0}
+  CurrentState: {fileID: 0}
+  Statemachine: {fileID: 0}
 --- !u!50 &1999464442
 Rigidbody2D:
   serializedVersion: 4
@@ -394,17 +388,17 @@ MonoBehaviour:
   _PlayerPosition:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 0dff378bf59dcbf43842e71db684232e, type: 2}
   _MoveDirection:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 196cfa45fee27cc41807fc881b11ed0b, type: 2}
   _AimPosition:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
-  _OnDashInput: {fileID: 0}
-  _OnHookInput: {fileID: 0}
+    Variable: {fileID: 11400000, guid: adb970d97005a044cbc1bd582f043431, type: 2}
+  _OnDashInput: {fileID: 11400000, guid: c3965824fe781f04fb438da30060e593, type: 2}
+  _OnHookInput: {fileID: 11400000, guid: a8846eef8a853a2419adf2e2b9406628, type: 2}
 --- !u!4 &1999464444
 Transform:
   m_ObjectHideFlags: 0
@@ -420,3 +414,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999464445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999464440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8495c1316b3fd8459773962b504268a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c3965824fe781f04fb438da30060e593, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1999464441}
+        m_MethodName: TryTransition
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: a22de4904f87a5b43b57e5bfe5d6c4c4,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: StatemachineState, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

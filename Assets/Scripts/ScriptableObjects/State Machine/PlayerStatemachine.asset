@@ -9,8 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab99abc1e9e76b94c9730a6de1cd0f30, type: 3}
-  m_Name: New State Machine
+  m_Name: PlayerStatemachine
   m_EditorClassIdentifier: 
-  _States:
-  - {fileID: 11400000, guid: 23798906416f25e45ba57a2953d62e2b, type: 2}
-  - {fileID: 11400000, guid: 8597c260dc5604a4c8c6696acef2906f, type: 2}
+  TransitionList:
+  - State: {fileID: 11400000, guid: a22de4904f87a5b43b57e5bfe5d6c4c4, type: 2}
+    Transitions:
+    - NeedCondition: 0
+      Condition: {fileID: 0}
+      TargetState: {fileID: 0}
+  - State: {fileID: 0}
+    Transitions: []
