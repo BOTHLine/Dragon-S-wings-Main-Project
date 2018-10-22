@@ -8,13 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64034bab353dfae4788f3bbf24a18a4e, type: 3}
-  m_Name: MoveState
+  m_Script: {fileID: 11500000, guid: bfc04d9fd0cf37e41bbd440757366f31, type: 3}
+  m_Name: Move Action
   m_EditorClassIdentifier: 
-  BlockingActions:
-  - UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 50327c50d33ecee4792394e3ed022443, type: 2}
-  - UseConstant: 0
+  moveDirection:
+    UseConstant: 0
+    ConstantValue: {x: 0, y: 0}
+    Variable: {fileID: 0}
+  moveSpeed:
+    UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 0}

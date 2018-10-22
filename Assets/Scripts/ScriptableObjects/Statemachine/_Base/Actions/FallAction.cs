@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = "Statemachine/Actions/Fall Action")]
 public class FallAction : Action
 {
-    public float fallTime;
+    public FloatReference fallTime;
     private float currentFallTime;
 
     public override void Act(StateController controller)

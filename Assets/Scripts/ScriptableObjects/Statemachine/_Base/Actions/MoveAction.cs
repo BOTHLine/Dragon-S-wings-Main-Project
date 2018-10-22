@@ -3,15 +3,14 @@
 [CreateAssetMenu(menuName = "Statemachine/Actions/Move Action")]
 public class MoveAction : Action
 {
-    public float movementSpeed;
+    public Vector2Reference moveDirection;
+    public FloatReference moveSpeed;
 
     // TODO Vector2Reference moveDirection
 
     public override void Act(StateController controller)
     {
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-        controller.rigidbody2D.velocity = movement.normalized * movementSpeed;
+        controller.rigidbody2D.AddForce(moveDirection.Value * moveSpeed);
     }
 
     public override void EnterState(StateController controller) { controller.canDash = true; }

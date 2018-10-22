@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Statemachine/Actions/Respawn Action")]
 public class RespawnAction : Action
 {
-    // TODO LastSavePosition Vector2Reference
-    // TODO EntityHealth FloatReference
+    public Vector2Reference lastSavePosition;
+    public Vector2Reference health;
 
     public override void Act(StateController controller) { }
 

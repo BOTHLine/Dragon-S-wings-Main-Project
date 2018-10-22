@@ -3,13 +3,13 @@
 [CreateAssetMenu(menuName = "Statemachine/Actions/Dash Action")]
 public class DashAction : Action
 {
-    public float dashRange;
-    public float dashSpeed;
+    public FloatReference dashRange;
+    public FloatReference dashSpeed;
 
     // TODO Vector2Reference
-    public Vector2 startPosition;
-    public Vector2 targetPosition;
-    public float distanceThreshold = 0.01f;
+    public Vector2Reference startPosition;
+    public Vector2Reference targetPosition;
+    public FloatReference distanceThreshold;
 
     private Vector2 start;
     private Vector2 direction;
