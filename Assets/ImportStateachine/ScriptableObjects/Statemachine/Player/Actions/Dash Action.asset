@@ -8,19 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD:Assets/Scripts/ScriptableObjects/State Machine/PlayerStatemachine.asset
-  m_Script: {fileID: 11500000, guid: ab99abc1e9e76b94c9730a6de1cd0f30, type: 3}
-  m_Name: PlayerStatemachine
-  m_EditorClassIdentifier: 
-  TransitionList:
-  - State: {fileID: 11400000, guid: a22de4904f87a5b43b57e5bfe5d6c4c4, type: 2}
-    Transitions:
-    - NeedCondition: 0
-      Condition: {fileID: 0}
-      TargetState: {fileID: 0}
-  - State: {fileID: 0}
-    Transitions: []
-=======
   m_Script: {fileID: 11500000, guid: ba76a6debdf84ce4999b026b95ca4078, type: 3}
   m_Name: Dash Action
   m_EditorClassIdentifier: 
@@ -29,4 +16,3 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0}
   distanceThreshold: 0.01
->>>>>>> 8cc7182a1fc40ee4507d327adb62d6e005c90494:Assets/ImportStateachine/ScriptableObjects/Statemachine/Player/Actions/Dash Action.asset

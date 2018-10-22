@@ -113,6 +113,89 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &225705570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 225705574}
+  - component: {fileID: 225705573}
+  - component: {fileID: 225705572}
+  - component: {fileID: 225705571}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!58 &225705571
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 225705570}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &225705572
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 225705570}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &225705573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 225705570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fed56c474b81744bc88230624fe7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody2D: {fileID: 0}
+  circleCollider2D: {fileID: 0}
+  currentState: {fileID: 11400000, guid: 640c4f57d0e0c0f42839a01b934c7f0e, type: 2}
+  remainState: {fileID: 11400000, guid: 4f1247f8201d72744ab9a02b8dd22177, type: 2}
+  stateActionFinished: 0
+  canDash: 1
+--- !u!4 &225705574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 225705570}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851537203
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,15 +394,26 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 62671f84c9303aa43b438b73b160fbb9, type: 2}
-  _StartPosition:
+  _DashRange:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  _Position:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 11400000, guid: 0dff378bf59dcbf43842e71db684232e, type: 2}
+    Variable: {fileID: 0}
   _TargetPosition:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 11400000, guid: adb970d97005a044cbc1bd582f043431, type: 2}
-  _TargetStateWhenFinished: {fileID: 0}
+  _CanDash:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  _IsDashing:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 0}
   OnDashStart: {fileID: 11400000, guid: 5c4b64d3511ff6742a7fba2fee425c61, type: 2}
   OnDashEnd: {fileID: 11400000, guid: e20a607ab9958ed439b8ac8ca952276f, type: 2}
 --- !u!1 &1999464440
@@ -340,7 +434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1999464441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,8 +446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6f30304d2a0b748a94a5ddc171831d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: {fileID: 0}
-  Statemachine: {fileID: 0}
 --- !u!50 &1999464442
 Rigidbody2D:
   serializedVersion: 4
@@ -397,8 +489,14 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 11400000, guid: adb970d97005a044cbc1bd582f043431, type: 2}
+  _CurrentPlayerState: 0
+  _CurrentHookState: 0
+  _OnMoveInput: {fileID: 0}
   _OnDashInput: {fileID: 11400000, guid: c3965824fe781f04fb438da30060e593, type: 2}
   _OnHookInput: {fileID: 11400000, guid: a8846eef8a853a2419adf2e2b9406628, type: 2}
+  _OnPullInput: {fileID: 0}
+  _OnSwingInput: {fileID: 0}
+  _OnReleaseInput: {fileID: 0}
 --- !u!4 &1999464444
 Transform:
   m_ObjectHideFlags: 0

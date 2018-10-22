@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+/*
 [CreateAssetMenu(menuName = "State", fileName = "New State")]
 public class State : ScriptableObject
 {
@@ -18,3 +19,4 @@ public class State : ScriptableObject
         }
     }
 }
+*/

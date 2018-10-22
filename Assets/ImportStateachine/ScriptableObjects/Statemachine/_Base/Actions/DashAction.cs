@@ -16,7 +16,8 @@ public class DashAction : Action
     private Vector2 destination;
 
     private float startTime;
-    private float dashDistance;
+    private float trueDashDistance;
+    private float totalDashDistance;
 
     public override void Act(StateController controller)
     {
@@ -27,7 +28,7 @@ public class DashAction : Action
         */
 
         float distanceCovered = (Time.time - startTime) * dashSpeed;
-        float fractalDistance = distanceCovered / dashDistance;
+        float fractalDistance = distanceCovered / totalDashDistance;
 
         controller.rigidbody2D.MovePosition(Vector2.Lerp(start, destination, fractalDistance));
 
@@ -40,7 +41,9 @@ public class DashAction : Action
         destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         startTime = Time.time;
-        dashDistance = (dashRange * dashRange <= (destination - start).sqrMagnitude) ? dashRange : (destination - start).magnitude;
+
+        totalDashDistance = (destination - start).magnitude;
+        trueDashDistance = Mathf.Min(dashRange, totalDashDistance);
 
         /*
         controller.canDash = false;
@@ -63,5 +66,5 @@ public class DashAction : Action
 
     public override void ExitState(StateController controller) { controller.rigidbody2D.velocity = Vector2.zero; }
 
-    private bool ReachedDestination(StateController controller) { return ((Vector2)controller.transform.position - start).sqrMagnitude + distanceThreshold >= dashDistance * dashDistance; }
+    private bool ReachedDestination(StateController controller) { return ((Vector2)controller.transform.position - start).sqrMagnitude + distanceThreshold >= trueDashDistance * trueDashDistance; }
 }
