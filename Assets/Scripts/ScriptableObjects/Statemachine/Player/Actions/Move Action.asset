@@ -14,8 +14,8 @@ MonoBehaviour:
   moveDirection:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 196cfa45fee27cc41807fc881b11ed0b, type: 2}
   moveSpeed:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: ae359fc2da7f4f042982be020f29b3b2, type: 2}

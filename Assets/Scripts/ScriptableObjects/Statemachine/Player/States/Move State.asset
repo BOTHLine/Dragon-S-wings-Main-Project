@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Name: Move State
   m_EditorClassIdentifier: 
   layer: 0
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 11400000, guid: 1ac079611ab9d9849b8fa843fdb06632, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: ce191eac1dc211a49b2cf8b9217c4ef7, type: 2}
+    trueState: {fileID: 11400000, guid: 4f1247f8201d72744ab9a02b8dd22177, type: 2}
+    falseState: {fileID: 11400000, guid: 4f1247f8201d72744ab9a02b8dd22177, type: 2}
