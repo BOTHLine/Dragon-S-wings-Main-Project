@@ -14,12 +14,12 @@ MonoBehaviour:
   pullSpeed:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 1cecac61c83531b4facabfa76d196287, type: 2}
   playerPosition:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 0dff378bf59dcbf43842e71db684232e, type: 2}
   hookPosition:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 12dde5696aa245b46ac33b761bee0419, type: 2}

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Pull State
   m_EditorClassIdentifier: 
   layer: 0
-  actions: []
+  actions:
+  - {fileID: 11400000, guid: 8568a97176035f740827328b7bf0f581, type: 2}
   transitions: []
