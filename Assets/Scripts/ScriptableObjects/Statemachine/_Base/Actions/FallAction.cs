@@ -10,7 +10,7 @@ public class FallAction : Action
     {
         currentFallTime += Time.deltaTime;
         if (currentFallTime >= fallTime)
-            controller.stateActionFinished = true;
+            ;
     }
 
     public override void EnterState(StateController controller) { currentFallTime = 0.0f; }

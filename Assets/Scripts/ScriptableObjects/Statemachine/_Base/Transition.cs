@@ -2,7 +2,7 @@
     ]
 public class Transition
 {
-    public Decision decision;
+    public Decision[] decisions;
     public State trueState;
     public State falseState;
 }

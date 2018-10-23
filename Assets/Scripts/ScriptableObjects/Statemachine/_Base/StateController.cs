@@ -12,8 +12,6 @@ public class StateController : MonoBehaviour
     public State currentState;
     public State remainState;
 
-    public bool stateActionFinished = false;
-
     [HideInInspector] public bool canDash = true;
 
     // Methods
@@ -23,19 +21,25 @@ public class StateController : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
     }
 
+    private void Start()
+    {
+        currentState.EnterState(this);
+    }
+
     private void Update()
     {
         currentState.UpdateState(this);
     }
 
-    public void TransitionToState(State nextState)
+    public bool TransitionToState(State nextState)
     {
         if (nextState == remainState)
-            return;
+            return false;
 
         currentState.ExitState(this);
         currentState = nextState;
         currentState.EnterState(this);
+        return true;
     }
 
     public void Respawn()

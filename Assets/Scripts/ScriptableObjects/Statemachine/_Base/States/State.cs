@@ -24,23 +24,34 @@ public class State : ScriptableObject
 
     private void CheckTransitions(StateController controller)
     {
-        for (int i = 0; i < actions.Length; i++)
+        for (int i = 0; i < transitions.Length; i++)
         {
-            if (transitions[i].decision.Decide(controller))
-                controller.TransitionToState(transitions[i].trueState);
-            else
-                controller.TransitionToState(transitions[i].falseState);
+            bool shouldTransition = true;
+            for (int j = 0; j < transitions[i].decisions.Length; j++)
+            {
+                if (!transitions[i].decisions[j].Decide(controller)) { shouldTransition = false; }
+            }
+            State transitionState = shouldTransition ? transitions[i].trueState : transitions[i].falseState;
+            if (controller.TransitionToState(transitionState))
+                break;
         }
     }
 
     public void EnterState(StateController controller)
     {
         controller.gameObject.layer = layer;
-        controller.stateActionFinished = false;
 
         for (int i = 0; i < actions.Length; i++)
         {
             actions[i].EnterState(controller);
+        }
+
+        for (int i = 0; i < transitions.Length; i++)
+        {
+            for (int j = 0; j < transitions[i].decisions.Length; j++)
+            {
+                transitions[i].decisions[j].EnterState(controller);
+            }
         }
     }
 
@@ -49,6 +60,14 @@ public class State : ScriptableObject
         for (int i = 0; i < actions.Length; i++)
         {
             actions[i].ExitState(controller);
+        }
+
+        for (int i = 0; i < transitions.Length; i++)
+        {
+            for (int j = 0; j < transitions[i].decisions.Length; j++)
+            {
+                transitions[i].decisions[j].ExitState(controller);
+            }
         }
     }
 }

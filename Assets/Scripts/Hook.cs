@@ -2,109 +2,81 @@
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Hook : MonoBehaviour
 {
-    public class AnchorPoint
-    {
-        public Transform ParentTransform;
-        public Vector2 Position { get { return ((Vector2)ParentTransform.position + LocalPosition); } }
-        public Vector2 LocalPosition;
-        public float RequiredRopeLength;
-        public bool Angle;
+    // Components
+    private SpriteRenderer spriteRenderer;
+    private new Rigidbody2D rigidbody2D;
+    private CircleCollider2D circleCollider2D;
 
-        public AnchorPoint(Transform parentTransform, Vector2 localPosition, Vector2 lastPosition, bool angle)
-        {
-            ParentTransform = parentTransform;
-            LocalPosition = localPosition;
-            RequiredRopeLength = Vector2.Distance(Position, lastPosition);
-            Angle = angle;
-        }
+    // Variables
+    [SerializeField] private FloatReference hookRange;
+    [SerializeField] private FloatReference hookSpeed;
 
-        public AnchorPoint(Transform parentTransform, Vector2 localPosition)
-        {
-            ParentTransform = parentTransform;
-            LocalPosition = localPosition;
-        }
-    }
+    [SerializeField] private Vector2Reference startPosition;
+    [SerializeField] private Vector2Reference targetPosition;
 
-    private SpriteRenderer _SpriteRenderer;
-    private Rigidbody2D _Rigidbody2D;
-    private PolygonCollider2D _PolygondCollider2D;
+    private Vector2 start;
+    private bool canShoot = true;
 
-    [SerializeField] private FloatReference _MaxHookRange;
-    [SerializeField] private FloatReference _MaxRopeLength;
-    [SerializeField] private FloatReference _HookSpeed;
+    //Events
+    [SerializeField] private GameEvent OnHookShoot;
+    [SerializeField] private GameEvent OnHookHit;
 
-    [SerializeField] private BoolReference _CanHook;
-    [SerializeField] private Vector2Reference _StartPosition;
-    [SerializeField] private Vector2Reference _TargetPosition;
-
-    [SerializeField] private BoolReference _IsHookFlying;
-    [SerializeField] private BoolReference _IsHookClipped;
-
-    //    [SerializeField] private LayerMask _LayerMask;
-
-    [SerializeField] private GameEvent _OnHookShoot;
-    [SerializeField] private GameEvent _OnHookHit;
-
+    // Mono Behaviour
     private void Awake()
     {
-        _SpriteRenderer = GetComponent<SpriteRenderer>();
-        _Rigidbody2D = GetComponent<Rigidbody2D>();
-        _PolygondCollider2D = GetComponent<PolygonCollider2D>();
-        //    CreateLayerMask();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
 
-        _SpriteRenderer.enabled = false;
-        _PolygondCollider2D.enabled = false;
+        spriteRenderer.enabled = false;
+        circleCollider2D.enabled = false;
     }
 
     private void FixedUpdate()
     {
-        if (_IsHookFlying && Vector2.Distance(_TargetPosition, _StartPosition) > _MaxHookRange)
+        if (Vector2.Distance(transform.position, start) > hookRange)
             ResetHook();
-    }
-
-    /*
-    private void CreateLayerMask()
-    {
-        _LayerMask = 0;
-        int layer = gameObject.layer;
-
-        //   for (int i = 0)
-    }
-    */
-
-    public void Shoot()
-    {
-        if (!_CanHook)
-            return;
-
-        _CanHook.Variable.Value = false;
-        _OnHookShoot.Raise();
-
-        LookAt(_TargetPosition);
-
-        _PolygondCollider2D.enabled = true;
-        _SpriteRenderer.enabled = true;
-
-        _Rigidbody2D.MovePosition(_StartPosition);
-        _Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        _Rigidbody2D.velocity = (_TargetPosition - _StartPosition).normalized * _HookSpeed;
-    }
-
-    private void ResetHook()
-    {
-        _PolygondCollider2D.enabled = false;
-        _SpriteRenderer.enabled = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _OnHookHit.Raise();
-        _Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-        _Rigidbody2D.velocity = Vector2.zero;
-        _Rigidbody2D.angularVelocity = 0.0f;
+        OnHookHit.Raise();
+        rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        rigidbody2D.velocity = Vector2.zero;
+        rigidbody2D.angularVelocity = 0.0f;
+    }
+
+    // Methods
+    public void Shoot()
+    {
+        if (!canShoot || targetPosition.Value.Equals(startPosition.Value))
+            return;
+
+        canShoot = false;
+        start = startPosition.Value;
+
+        OnHookShoot.Raise();
+
+        LookAt(targetPosition);
+
+        circleCollider2D.enabled = true;
+        spriteRenderer.enabled = true;
+
+        rigidbody2D.MovePosition(startPosition);
+        rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody2D.velocity = (targetPosition - startPosition).normalized * hookSpeed;
+    }
+
+    private void ResetHook()
+    {
+        circleCollider2D.enabled = false;
+        spriteRenderer.enabled = false;
+        rigidbody2D.velocity = Vector2.zero;
+        transform.localPosition = Vector2.zero;
+        canShoot = true;
     }
 
     private void LookAt(Vector2 targetPosition)

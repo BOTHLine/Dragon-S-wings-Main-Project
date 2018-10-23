@@ -8,4 +8,7 @@ public class CollideDecision : Decision
         Collider2D collider = Physics2D.OverlapCircle(controller.transform.position, controller.circleCollider2D.radius, LayerList.CreateLayerMask(controller.gameObject.layer));
         return collider != null;
     }
+
+    public override void EnterState(StateController controller) { }
+    public override void ExitState(StateController controller) { }
 }

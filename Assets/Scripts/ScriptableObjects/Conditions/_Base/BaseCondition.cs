@@ -10,13 +10,3 @@ public abstract class BaseCondition
 
     public abstract void Initialize();
 }
-
-public enum ComparisonOperator
-{
-    Equals,
-    NotEquals,
-    Less,
-    Greater,
-    LessEquals,
-    GreaterEquals
-}

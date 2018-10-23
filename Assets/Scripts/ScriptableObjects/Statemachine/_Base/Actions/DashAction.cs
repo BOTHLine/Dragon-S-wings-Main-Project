@@ -31,8 +31,6 @@ public class DashAction : Action
         float fractalDistance = distanceCovered / totalDashDistance;
 
         controller.rigidbody2D.MovePosition(Vector2.Lerp(start, destination, fractalDistance));
-
-        controller.stateActionFinished = ReachedDestination(controller);
     }
 
     public override void EnterState(StateController controller)

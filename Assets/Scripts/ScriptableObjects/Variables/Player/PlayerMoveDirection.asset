@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: PlayerMoveDirection
   m_EditorClassIdentifier: 
   InitialValue: {x: 0, y: 0}
-  Value: {x: 0, y: 0}
+  _Value: {x: 0, y: 0}

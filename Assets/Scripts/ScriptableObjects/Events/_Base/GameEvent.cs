@@ -3,8 +3,24 @@
 [CreateAssetMenu(menuName = "Events/Game Event", fileName = "New Game Event")]
 public class GameEvent : ScriptableObject
 {
-    private System.Collections.Generic.List<GameEventListener> Listeners = new System.Collections.Generic.List<GameEventListener>();
+    private System.Collections.Generic.List<UnityEngine.Events.UnityEvent> listener = new System.Collections.Generic.List<UnityEngine.Events.UnityEvent>();
+    //   private System.Collections.Generic.List<GameEventListener> Listeners = new System.Collections.Generic.List<GameEventListener>();
 
+    public void Raise()
+    {
+        for (int i = listener.Count - 1; i >= 0; i--)
+        {
+            listener[i].Invoke();
+        }
+    }
+
+    public void RegisterListener(UnityEngine.Events.UnityEvent _listener)
+    { if (!listener.Contains(_listener)) listener.Add(_listener); }
+
+    public void UnregisterListener(UnityEngine.Events.UnityEvent _listener)
+    { if (listener.Contains(_listener)) listener.Remove(_listener); }
+
+    /*
     public void Raise()
     {
         for (int i = Listeners.Count - 1; i >= 0; i--)
@@ -18,6 +34,7 @@ public class GameEvent : ScriptableObject
 
     public void UnregisterListener(GameEventListener listener)
     { if (Listeners.Contains(listener)) Listeners.Remove(listener); }
+    */
 
     public void OnAfterDeserialize() { }
     public void OnBeforeSerialize() { }
