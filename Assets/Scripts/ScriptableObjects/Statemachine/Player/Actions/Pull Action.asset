@@ -23,3 +23,8 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 11400000, guid: 12dde5696aa245b46ac33b761bee0419, type: 2}
+  distanceThreshold:
+    UseConstant: 1
+    ConstantValue: 0.75
+    Variable: {fileID: 0}
+  OnPullFinished: {fileID: 11400000, guid: 4e71e374e9a588048a15002da0c33133, type: 2}

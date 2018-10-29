@@ -19,6 +19,7 @@ public class Hook : MonoBehaviour
 
     private Vector2 start;
     private bool canShoot = true;
+    private Transform parent;
 
     //Events
     [SerializeField] private GameEvent OnHookShoot;
@@ -33,6 +34,8 @@ public class Hook : MonoBehaviour
 
         spriteRenderer.enabled = false;
         circleCollider2D.enabled = false;
+
+        parent = transform.parent;
     }
 
     private void FixedUpdate()
@@ -56,6 +59,7 @@ public class Hook : MonoBehaviour
             return;
 
         canShoot = false;
+        transform.parent = parent.parent;
         start = startPosition.Value;
 
         OnHookShoot.Raise();
@@ -70,11 +74,12 @@ public class Hook : MonoBehaviour
         rigidbody2D.velocity = (targetPosition - startPosition).normalized * hookSpeed;
     }
 
-    private void ResetHook()
+    public void ResetHook()
     {
         circleCollider2D.enabled = false;
         spriteRenderer.enabled = false;
         rigidbody2D.velocity = Vector2.zero;
+        transform.parent = parent;
         transform.localPosition = Vector2.zero;
         canShoot = true;
     }

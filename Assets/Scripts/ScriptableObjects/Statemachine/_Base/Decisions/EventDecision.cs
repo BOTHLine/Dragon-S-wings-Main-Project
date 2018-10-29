@@ -16,7 +16,6 @@ public class EventDecision : Decision
         response = new UnityEngine.Events.UnityEvent();
         response.AddListener(SetTrue);
         listenEvent.RegisterListener(response);
-        Debug.Log("Enter State");
     }
 
     public override void ExitState(StateController controller) { listenEvent.UnregisterListener(response); }
