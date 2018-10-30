@@ -28,9 +28,14 @@ public class PlayerInput : MonoBehaviour
     }
 
     // Methods
+    private float GetAxisRaw(string name)
+    {
+        return Input.GetAxisRaw(name);
+    }
+
     private float GetAxis(string name, float dead)
     {
-        float value = Input.GetAxisRaw(name);
+        float value = GetAxisRaw(name);
         if (Mathf.Abs(value) < dead)
         {
             isAxisInUse.Remove(name);
@@ -48,13 +53,20 @@ public class PlayerInput : MonoBehaviour
         return GetAxis(name, deadValue);
     }
 
-    private Vector2 GetAxis2D(string nameX, string nameY)
+    private Vector2 GetAxis2D(string nameX, string nameY, float dead)
     {
-        Vector2 Axis2D = new Vector2(GetAxis(nameX), -GetAxis(nameY));
+        Vector2 Axis2D = new Vector2(GetAxisRaw(nameX), -GetAxisRaw(nameY));
         float magnitudeFactor = Axis2D.magnitude;
-        if (magnitudeFactor > 1)
+        if (magnitudeFactor < Mathf.Sqrt(dead * dead + dead * dead))
+            return Vector2.zero;
+        else if (magnitudeFactor > 1)
             return new Vector2(Axis2D.x / magnitudeFactor, Axis2D.y / magnitudeFactor);
         return Axis2D;
+    }
+
+    private Vector2 GetAxis2D(string nameX, string nameY)
+    {
+        return GetAxis2D(nameX, nameY, deadValue);
     }
 
     private bool GetAxisDown(string name, float dead)

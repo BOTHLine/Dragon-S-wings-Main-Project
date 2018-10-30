@@ -13,6 +13,20 @@ TagManager:
   - UI
   - 
   - 
+  - Background
+  - Ground
+  - 
+  - Foreground
+  - 
+  - Objects
+  - 
+  - Player Low
+  - Player High
+  - 
+  - Enemy Low
+  - Enemy High
+  - 
+  - Hook
   - 
   - 
   - 
@@ -21,21 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pit
   - FallCheck
   m_SortingLayers:
   - name: Default
