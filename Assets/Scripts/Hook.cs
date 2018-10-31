@@ -23,7 +23,9 @@ public class Hook : MonoBehaviour
 
     //Events
     [SerializeField] private GameEvent OnHookShoot;
-    [SerializeField] private GameEvent OnHookHit;
+    [SerializeField] private GameEvent OnHookHitLightHookable;
+    [SerializeField] private GameEvent OnHookHitMediumHookable;
+    [SerializeField] private GameEvent OnHookHitHeavyHookable;
 
     // Mono Behaviour
     private void Awake()
@@ -46,13 +48,26 @@ public class Hook : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnHookHit.Raise();
+        Hookable hookable = collision.collider.GetComponent<Hookable>();
+        if (hookable != null)
+        {
+            switch (hookable.Weight)
+            {
+                case Weight.Light:
+                    OnHookHitLightHookable.Raise();
+                    break;
+                case Weight.Medium:
+                    OnHookHitMediumHookable.Raise();
+                    break;
+                case Weight.Heavy:
+                    OnHookHitHeavyHookable.Raise();
+                    break;
+            }
+        }
+
         rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         rigidbody2D.velocity = Vector2.zero;
         rigidbody2D.angularVelocity = 0.0f;
-
-        Hookable hookable = collision.collider.GetComponent<Hookable>();
-        hookable?.HookHit();
     }
 
     // Methods

@@ -3,6 +3,4 @@
 public interface Hookable
 {
     Weight Weight { get; }
-
-    void HookHit();
 }
