@@ -13,7 +13,7 @@ public class FallCheckAction : Action
     public override void Act(StateController controller)
     {
         Collider2D coll = Physics2D.OverlapCircle(controller.transform.position, controller.circleCollider2D.radius, LayerList.FallCheck.LayerMask);
-        if (coll)
+        if (!coll)
         {
             OnFallCheckFalse.Raise();
             return;

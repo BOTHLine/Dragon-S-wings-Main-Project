@@ -11,7 +11,7 @@ public class PlayerAim : MonoBehaviour
     public FloatReference aimHelpRadius;
 
     private bool hasTarget;
-    private Vector2 targetPosition;
+    public Vector2Reference autoAimPosition;
 
     private ColliderDistance2D closestColliderDistance2D;
 
@@ -30,6 +30,7 @@ public class PlayerAim : MonoBehaviour
 
     private void FindClosestHookable()
     {
+        autoAimPosition.Variable.Value = transform.position;
         hasTarget = false;
 
         if ((Vector2)transform.localPosition == Vector2.zero)
@@ -40,15 +41,15 @@ public class PlayerAim : MonoBehaviour
         {
             for (int i = 0; i < colliders.Length; i++)
             {
-                Hookable hookable = colliders[i].GetComponent<Hookable>();
-                if (hookable != null)
+                Aimable aimable = colliders[i].GetComponent<Aimable>();
+                if (aimable != null)
                 {
                     if (!hasTarget)
                     {
                         closestColliderDistance2D = circleCollider2D.Distance(colliders[i]);
                         if (closestColliderDistance2D.isValid)
                         {
-                            targetPosition = closestColliderDistance2D.pointB;
+                            autoAimPosition.Variable.Value = closestColliderDistance2D.pointB;
                             hasTarget = true;
                         }
                     }
@@ -58,7 +59,7 @@ public class PlayerAim : MonoBehaviour
                         if (newColliderDistance2D.isValid && newColliderDistance2D.distance < closestColliderDistance2D.distance)
                         {
                             closestColliderDistance2D = newColliderDistance2D;
-                            targetPosition = closestColliderDistance2D.pointB;
+                            autoAimPosition.Variable.Value = closestColliderDistance2D.pointB;
                         }
                     }
                 }
@@ -75,7 +76,7 @@ public class PlayerAim : MonoBehaviour
         else
         {
             UnityEditor.Handles.color = Color.green;
-            UnityEditor.Handles.DrawLine(aimPosition.Value, targetPosition);
+            UnityEditor.Handles.DrawLine(aimPosition.Value, autoAimPosition.Value);
         }
         UnityEditor.Handles.DrawWireDisc(aimPosition.Value, Vector3.forward, aimHelpRadius);
     }
