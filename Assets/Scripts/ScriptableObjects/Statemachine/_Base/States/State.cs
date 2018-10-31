@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = "Statemachine/State")]
 public class State : ScriptableObject
 {
-    public int layer;
+    public Layer layer;
 
     public Action[] actions;
     public Transition[] transitions;
@@ -39,7 +39,7 @@ public class State : ScriptableObject
 
     public void EnterState(StateController controller)
     {
-        controller.gameObject.layer = layer;
+        controller.gameObject.layer = (int)layer;
 
         for (int i = 0; i < actions.Length; i++)
         {
