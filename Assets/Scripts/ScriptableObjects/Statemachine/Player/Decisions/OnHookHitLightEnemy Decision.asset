@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02fb9905d04a5b344ac08d53b87cc126, type: 3}
-  m_Name: OnHookHit Decision
+  m_Name: OnHookHitLightEnemy Decision
   m_EditorClassIdentifier: 
-  listenEvent: {fileID: 11400000, guid: 9abc0b3f369811744a9119e262f6e35b, type: 2}
+  listenEvent: {fileID: 11400000, guid: 1ac05eba55fe83c419fbba427189102b, type: 2}

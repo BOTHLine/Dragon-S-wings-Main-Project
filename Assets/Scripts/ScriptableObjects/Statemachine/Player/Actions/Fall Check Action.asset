@@ -17,6 +17,6 @@ MonoBehaviour:
     Variable: {fileID: 0}
   fallTime:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 0.5
     Variable: {fileID: 0}
   OnFallCheckFalse: {fileID: 11400000, guid: ecc5114f58197a64db257e8c306bb5d8, type: 2}

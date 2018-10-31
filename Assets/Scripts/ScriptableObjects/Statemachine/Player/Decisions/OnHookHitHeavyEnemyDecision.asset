@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02fb9905d04a5b344ac08d53b87cc126, type: 3}
   m_Name: OnHookHitHeavyEnemyDecision
   m_EditorClassIdentifier: 
-  listenEvent: {fileID: 0}
+  listenEvent: {fileID: 11400000, guid: 7451d5c1eeaef064faf0f2b433b2848c, type: 2}
