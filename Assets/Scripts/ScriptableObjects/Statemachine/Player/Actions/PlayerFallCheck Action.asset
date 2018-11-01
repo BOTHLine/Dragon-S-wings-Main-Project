@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallTime:
     UseConstant: 1
-    ConstantValue: 0.5
+    ConstantValue: 0
     Variable: {fileID: 0}
   OnPlayerFall: {fileID: 11400000, guid: 47db525f0d40ad148acda0df98cb45be, type: 2}
   OnPlayerLand: {fileID: 11400000, guid: da331e16a7b1d494c9f60cbd89893814, type: 2}
