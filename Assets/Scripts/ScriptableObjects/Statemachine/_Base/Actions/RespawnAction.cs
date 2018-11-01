@@ -4,14 +4,20 @@
 public class RespawnAction : Action
 {
     public Vector2Reference lastSavePosition;
-    public Vector2Reference health;
+    public FloatReference health;
 
-    public override void Act(StateController controller) { }
+    public GameEvent OnPlayerRespawn;
 
-    public override void EnterState(StateController controller)
+    public override void Act(StateController controller)
     {
-        // TODO Set Position to LastSavePosition Vector2Reference;
+        OnPlayerRespawn.Raise();
     }
 
-    public override void ExitState(StateController controller) { }
+    public override void EnterState(StateController controller) { }
+
+    public override void ExitState(StateController controller)
+    {
+        controller.rigidbody2D.velocity = Vector2.zero;
+        controller.rigidbody2D.MovePosition(lastSavePosition);
+    }
 }
