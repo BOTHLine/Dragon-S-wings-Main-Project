@@ -110377,7 +110377,9 @@ GameObject:
   - component: {fileID: 2128503331}
   - component: {fileID: 2128503333}
   - component: {fileID: 2128503332}
-  m_Layer: 0
+  - component: {fileID: 2128503335}
+  - component: {fileID: 2128503334}
+  m_Layer: 30
   m_Name: Tilemap_Pits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118351,3 +118353,31 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2128503334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128503330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f8cabdcd1a0cc489745117c285af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition:
+    UseConstant: 0
+    ConstantValue: {x: 0, y: 0}
+    Variable: {fileID: 11400000, guid: 0dff378bf59dcbf43842e71db684232e, type: 2}
+--- !u!19719996 &2128503335
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128503330}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}

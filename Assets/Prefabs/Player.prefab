@@ -283,7 +283,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!58 &58660519226289168
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -345,6 +345,10 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 11400000, guid: 57edf82827104064a92d92e5630455c7, type: 2}
+  NoAimColor: {r: 1, g: 0, b: 0, a: 0.050980393}
+  NoTargetColor: {r: 1, g: 1, b: 0, a: 0.09803922}
+  TargetFoundColor: {r: 0, g: 1, b: 0, a: 0.09803922}
+  TargetLineColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &114279364634630954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8495c1316b3fd8459773962b504268a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: ecc5114f58197a64db257e8c306bb5d8, type: 2}
+  Event: {fileID: 11400000, guid: 4e71e374e9a588048a15002da0c33133, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
