@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02fb9905d04a5b344ac08d53b87cc126, type: 3}
-  m_Name: OnFallCheckFalse Decision
+  m_Name: OnPlayerFall Decision
   m_EditorClassIdentifier: 
-  listenEvent: {fileID: 11400000, guid: ecc5114f58197a64db257e8c306bb5d8, type: 2}
+  listenEvent: {fileID: 0}

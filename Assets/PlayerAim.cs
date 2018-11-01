@@ -13,6 +13,11 @@ public class PlayerAim : MonoBehaviour
     private bool hasTarget;
     public Vector2Reference autoAimPosition;
 
+    [SerializeField] private Color NoAimColor;
+    [SerializeField] private Color NoTargetColor;
+    [SerializeField] private Color TargetFoundColor;
+    [SerializeField] private Color TargetLineColor;
+
     private ColliderDistance2D closestColliderDistance2D;
 
     private void Awake()
@@ -70,14 +75,15 @@ public class PlayerAim : MonoBehaviour
     private void OnDrawGizmos()
     {
         if ((Vector2)transform.localPosition == Vector2.zero)
-            UnityEditor.Handles.color = Color.red;
+            UnityEditor.Handles.color = NoAimColor;
         else if (!hasTarget)
-            UnityEditor.Handles.color = Color.yellow;
+            UnityEditor.Handles.color = NoTargetColor;
         else
         {
-            UnityEditor.Handles.color = Color.green;
+            UnityEditor.Handles.color = TargetLineColor;
             UnityEditor.Handles.DrawLine(aimPosition.Value, autoAimPosition.Value);
+            UnityEditor.Handles.color = TargetFoundColor;
         }
-        UnityEditor.Handles.DrawWireDisc(aimPosition.Value, Vector3.forward, aimHelpRadius);
+        UnityEditor.Handles.DrawSolidDisc(aimPosition.Value, Vector3.forward, aimHelpRadius);
     }
 }

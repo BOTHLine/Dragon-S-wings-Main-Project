@@ -8,15 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da95f078d3a175f4197e04204dd68150, type: 3}
-  m_Name: Fall Check Action
+  m_Script: {fileID: 11500000, guid: c3264154deb34a34297246c49e1b80d8, type: 3}
+  m_Name: PlayerRespawn Action
   m_EditorClassIdentifier: 
-  checkRadius:
-    UseConstant: 1
-    ConstantValue: 1
+  lastSavePosition:
+    UseConstant: 0
+    ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 0}
-  fallTime:
-    UseConstant: 1
-    ConstantValue: 0.5
+  health:
+    UseConstant: 0
+    ConstantValue: {x: 0, y: 0}
     Variable: {fileID: 0}
-  OnFallCheckFalse: {fileID: 11400000, guid: ecc5114f58197a64db257e8c306bb5d8, type: 2}
+  OnPlayerRespawn: {fileID: 0}

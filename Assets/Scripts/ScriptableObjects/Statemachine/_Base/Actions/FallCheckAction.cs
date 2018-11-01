@@ -3,26 +3,25 @@
 [CreateAssetMenu(menuName = "Statemachine/Actions/FallCheck Action")]
 public class FallCheckAction : Action
 {
-    public FloatReference checkRadius;
-
     public FloatReference fallTime;
     private float currentFallTime;
 
-    public GameEvent OnFallCheckFalse;
+    public GameEvent OnPlayerFall;
+    public GameEvent OnPlayerLand;
 
     public override void Act(StateController controller)
     {
-        Collider2D coll = Physics2D.OverlapCircle(controller.transform.position, controller.circleCollider2D.radius, LayerList.FallCheck.LayerMask);
-        if (!coll)
+        Collider2D coll = Physics2D.OverlapPoint(controller.transform.position, LayerList.FallCheck.LayerMask);
+        if (coll == null)
         {
-            OnFallCheckFalse.Raise();
+            OnPlayerLand.Raise();
             return;
         }
 
         currentFallTime += Time.deltaTime;
         if (currentFallTime >= fallTime)
         {
-            OnFallCheckFalse.Raise();
+            OnPlayerFall.Raise();
         }
     }
 
